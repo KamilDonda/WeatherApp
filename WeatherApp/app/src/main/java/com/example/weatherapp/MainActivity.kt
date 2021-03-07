@@ -1,7 +1,6 @@
 package com.example.weatherapp
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,8 +16,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -66,7 +63,6 @@ class MainActivity : AppCompatActivity() {
 
         fetchWeather(resp.weather.first())
 
-        val dateTime = LocalDateTime.now()
         val temp = resp.main.temp
         val press = resp.main.pressure
         val sunrise = resp.sys.sunrise
@@ -75,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         Log.v("XD", "$desc\n$temp\n$pressure\n$sunrise\n$sunset")
 
         val t = (temp - 273.15).roundToInt()
-        date.text = dateTime.format(DateTimeFormatter.ofPattern("d.M.y, H:m:ss"))
         temperature.text = "$t°C"
         pressure.text = "$press hPa"
         description.text = desc
