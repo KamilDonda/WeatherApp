@@ -24,6 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:letterSpacing="0.11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city" />
@@ -56,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/temperature"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/description"
@@ -64,10 +66,9 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="25sp"
-        android:layout_marginTop="180dp"
         app:layout_constraintEnd_toEndOf="@+id/main_icon"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="@+id/main_icon"
-        app:layout_constraintTop_toTopOf="@+id/main_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/main_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
