@@ -1,5 +1,6 @@
 package com.example.weatherapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +13,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
     private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-    private val CITY = "Gliwice,pl"
+    private val CITY = "Sosnowiec,pl"
     private val API_KEY = "cd6733212b58fc4b2fd1a255c17d09c6"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,15 +49,22 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fetchData(response: Response<Data>) {
         val resp = response.body()!!
 
         val desc = resp.weather.first().description
         val temp = resp.main.temp
-        val pressure = resp.main.pressure
+        val press = resp.main.pressure
         val sunrise = resp.sys.sunrise
         val sunset = resp.sys.sunset
 
         Log.v("XD", "$desc\n$temp\n$pressure\n$sunrise\n$sunset")
+
+        val t = (temp - 273.15).roundToInt()
+        temperature.text = "$t°C"
+        pressure.text = "$press hPa"
+        description.text = desc
+        city.text = CITY
     }
 }
