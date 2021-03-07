@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+
+    <string name="clear_sky">Pogodnie</string>
+    <string name="few_clouds">Lekkie zachmurzenie</string>
+    <string name="scattered_clouds">Pochmurno</string>
+    <string name="broken_clouds">Duże zachmurzenie</string>
+    <string name="shower_rain">Deszcz</string>
+    <string name="rain">Deszcz</string>
+    <string name="thunderstorm">Burza</string>
+    <string name="snow">Śnieg</string>
+    <string name="mist">Mgła</string>
+
 </resources>
