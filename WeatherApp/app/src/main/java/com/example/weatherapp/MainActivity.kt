@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         temperature.text = "$t°C"
         pressure.text = "$press hPa"
         description.text = desc
-        city.text = CITY
+        city.setQuery(CITY, false)
         main_icon.setImageResource(icon!!)
     }
 

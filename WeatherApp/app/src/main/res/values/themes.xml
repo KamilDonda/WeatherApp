@@ -18,4 +18,18 @@
 
         <item name="android:fontFamily">@font/montserrat_light</item>
     </style>
+
+    <!-- SearchView -->
+    <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:iconifiedByDefault">false</item>
+        <item name="android:queryHint">@string/search</item>
+
+    </style>
+
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <item name="android:textSize">@dimen/city_font</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>
