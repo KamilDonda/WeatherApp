@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 desc = getString(R.string.clear_sky)
             }
             "01n" -> {
-                icon = R.drawable.ic_night_half_moon_clear
+                icon = R.drawable.ic_night_clear
                 desc = getString(R.string.clear_sky)
             }
 
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 desc = getString(R.string.few_clouds)
             }
             "02n" -> {
-                icon = R.drawable.ic_night_half_moon_partial_cloud
+                icon = R.drawable.ic_night_partial_cloud
                 desc = getString(R.string.few_clouds)
             }
 
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 desc = getString(R.string.rain)
             }
             "10n" -> {
-                icon = R.drawable.ic_night_half_moon_rain
+                icon = R.drawable.ic_night_rain
                 desc = getString(R.string.rain)
             }
 

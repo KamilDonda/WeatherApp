@@ -17,14 +17,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextClock
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:format24Hour="d:MM:yyyy"
-        android:textSize="30sp"
+        android:textSize="26sp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_mono_light"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:format24Hour="H:mm:ss"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:fontFamily="@font/roboto_mono_light"
         app:layout_constraintEnd_toEndOf="@+id/date"
         app:layout_constraintStart_toStartOf="@+id/date"
@@ -46,19 +46,20 @@
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="100sp"
+        android:textSize="150sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
+        android:textSize="45sp"
         app:layout_constraintStart_toStartOf="@+id/temperature"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
@@ -66,21 +67,18 @@
         android:id="@+id/main_icon"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/temperature"
-        app:layout_constraintVertical_bias="0.2" />
+        android:layout_marginBottom="180dp"
+        app:layout_constraintBottom_toBottomOf="@+id/temperature"
+        app:layout_constraintStart_toStartOf="@+id/temperature" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/description"
-        android:layout_width="@dimen/icon_size"
+        android:layout_width="@dimen/desc_width"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="@+id/main_icon"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="@+id/main_icon"
-        app:layout_constraintTop_toBottomOf="@+id/main_icon" />
+        app:layout_constraintBottom_toBottomOf="@+id/main_icon"
+        app:layout_constraintStart_toEndOf="@+id/main_icon"
+        app:layout_constraintTop_toTopOf="@+id/main_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
