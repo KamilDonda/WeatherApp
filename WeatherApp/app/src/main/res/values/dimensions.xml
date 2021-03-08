@@ -2,4 +2,13 @@
 <resources>
     <dimen name="icon_size">80dp</dimen>
     <dimen name="desc_width">200dp</dimen>
+
+    <dimen name="small_margin">20dp</dimen>
+    <dimen name="big_margin">180dp</dimen>
+
+    <dimen name="temp_font">150sp</dimen>
+    <dimen name="press_font">45sp</dimen>
+    <dimen name="city_font">35sp</dimen>
+    <dimen name="desc_font">25sp</dimen>
+    <dimen name="time_font">22sp</dimen>
 </resources>
