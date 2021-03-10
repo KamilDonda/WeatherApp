@@ -1,9 +1,12 @@
 package com.example.weatherapp
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapp.api.WeatherAPI
@@ -20,8 +23,10 @@ import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var retrofit: Retrofit
+
     private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-    private val CITY = "Sosnowiec,pl"
+//    private val CITY = "Sosnowiec,pl"
     private val API_KEY = "cd6733212b58fc4b2fd1a255c17d09c6"
 
     private var icon: Int? = null
@@ -31,18 +36,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getWeather()
+        val locationManager: LocationManager
+                = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        createAPI()
+
+        city.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    getWeather(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                return false
+            }
+        })
+
     }
 
-    private fun getWeather() {
-        val retrofit = Retrofit.Builder()
+    private fun createAPI(): WeatherAPI {
+        retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val service = retrofit.create(WeatherAPI::class.java)
+        return retrofit.create(WeatherAPI::class.java)
+    }
 
-        val call = service.getWeather(CITY, API_KEY)
+    private fun getWeather(city: String) {
+        val call = retrofit.create(WeatherAPI::class.java).getWeather(city, API_KEY)
 
         call.enqueue(object : Callback<Data> {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -74,7 +98,6 @@ class MainActivity : AppCompatActivity() {
         temperature.text = "$t°C"
         pressure.text = "$press hPa"
         description.text = desc
-        city.setQuery(CITY, false)
         main_icon.setImageResource(icon!!)
     }
 
