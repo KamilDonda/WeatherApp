@@ -19,18 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.02"  />
 
-<!--    <com.google.android.material.textview.MaterialTextView-->
-<!--        android:id="@+id/city"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="@dimen/city_font"-->
-<!--        android:text="Sosnowiec"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.02" />-->
-
     <TextClock
         android:id="@+id/date"
         android:layout_width="wrap_content"
@@ -92,5 +80,65 @@
         app:layout_constraintBottom_toBottomOf="@+id/main_icon"
         app:layout_constraintStart_toEndOf="@+id/main_icon"
         app:layout_constraintTop_toTopOf="@+id/main_icon" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sunrise_icon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:foreground="@drawable/ic_sunrise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sunrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/desc_font"
+        app:layout_constraintBottom_toBottomOf="@+id/sunset"
+        app:layout_constraintStart_toEndOf="@+id/sunrise_icon"
+        app:layout_constraintTop_toTopOf="@+id/sunset" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sunrise_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sunrise"
+        android:textSize="@dimen/small_font"
+        app:layout_constraintBottom_toBottomOf="@+id/sunset"
+        app:layout_constraintEnd_toEndOf="@+id/sunrise"
+        app:layout_constraintTop_toBottomOf="@+id/sunrise_icon" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sunset_icon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_marginTop="10dp"
+        android:foreground="@drawable/ic_sunset"
+        app:layout_constraintBottom_toBottomOf="@+id/sunrise_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sunrise_icon" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/desc_font"
+        app:layout_constraintBottom_toBottomOf="@+id/sunset_icon"
+        app:layout_constraintStart_toEndOf="@+id/sunset_icon"
+        app:layout_constraintTop_toTopOf="@+id/sunset_icon" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sunset_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sunset"
+        android:textSize="@dimen/small_font"
+        app:layout_constraintEnd_toEndOf="@+id/sunset"
+        app:layout_constraintTop_toBottomOf="@+id/sunset" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

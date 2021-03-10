@@ -10,6 +10,8 @@
     <string name="thunderstorm">Burza</string>
     <string name="snow">Śnieg</string>
     <string name="mist">Mgła</string>
+    <string name="sunrise">Wschód słońca</string>
+    <string name="sunset">Zachód słońca</string>
 
     <string name="search">Wyszukaj</string>
 </resources>

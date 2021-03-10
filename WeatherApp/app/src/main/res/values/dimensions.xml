@@ -11,4 +11,5 @@
     <dimen name="city_font">28sp</dimen>
     <dimen name="desc_font">25sp</dimen>
     <dimen name="time_font">22sp</dimen>
+    <dimen name="small_font">18sp</dimen>
 </resources>

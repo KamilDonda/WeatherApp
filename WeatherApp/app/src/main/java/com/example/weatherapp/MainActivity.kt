@@ -19,6 +19,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -50,6 +54,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
+                if(!query.isNullOrBlank())
+                    if(!query[0].isUpperCase())
+                        city.setQuery(query.capitalize(), false)
                 return false
             }
         })
@@ -81,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private fun fetchData(response: Response<Data>) {
         val resp = response.body()!!
 
@@ -89,16 +96,17 @@ class MainActivity : AppCompatActivity() {
 
         val temp = resp.main.temp
         val press = resp.main.pressure
-        val sunrise = resp.sys.sunrise
-        val sunset = resp.sys.sunset
-
-        Log.v("XD", "$desc\n$temp\n$pressure\n$sunrise\n$sunset")
+        val sunriseTime = resp.sys.sunrise
+        val sunsetTime = resp.sys.sunset
 
         val t = (temp - 273.15).roundToInt()
         temperature.text = "$t°C"
         pressure.text = "$press hPa"
         description.text = desc
         main_icon.setImageResource(icon!!)
+
+        sunrise.text = convertTime(sunriseTime)
+        sunset.text = convertTime(sunsetTime)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -156,6 +164,17 @@ class MainActivity : AppCompatActivity() {
                 icon = R.drawable.ic_mist
                 desc = getString(R.string.mist)
             }
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun convertTime(epoc: Long): String? {
+        return try {
+            val sdf = SimpleDateFormat("H:mm")
+            val netDate = Date(epoc*1000)
+            sdf.format(netDate).toString()
+        } catch (e: Exception) {
+            e.toString()
         }
     }
 }
