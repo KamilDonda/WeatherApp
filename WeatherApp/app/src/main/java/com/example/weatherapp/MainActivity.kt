@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var retrofit: Retrofit
 
     private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-//    private val CITY = "Sosnowiec,pl"
     private val API_KEY = "cd6733212b58fc4b2fd1a255c17d09c6"
 
     private var icon: Int? = null
@@ -95,12 +94,15 @@ class MainActivity : AppCompatActivity() {
         fetchWeather(resp.weather.first())
 
         val temp = resp.main.temp
+        val tempMax = resp.main.temp_max
+        val tempMin = resp.main.temp_min
         val press = resp.main.pressure
         val sunriseTime = resp.sys.sunrise
         val sunsetTime = resp.sys.sunset
 
-        val t = (temp - 273.15).roundToInt()
-        temperature.text = "$t°C"
+        temperature.text = "${calcTemp(temp)}°C"
+        temperature_max.text = "${calcTemp(tempMax)}°C"
+        temperature_min.text = "${calcTemp(tempMin)}°C"
         pressure.text = "$press hPa"
         description.text = desc
         main_icon.setImageResource(icon!!)
@@ -177,4 +179,6 @@ class MainActivity : AppCompatActivity() {
             e.toString()
         }
     }
+
+    private fun calcTemp(t: Double) = (t - 273.15).roundToInt()
 }

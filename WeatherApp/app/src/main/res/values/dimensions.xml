@@ -8,6 +8,7 @@
 
     <dimen name="temp_font">150sp</dimen>
     <dimen name="press_font">45sp</dimen>
+    <dimen name="medium_font">36sp</dimen>
     <dimen name="city_font">28sp</dimen>
     <dimen name="desc_font">25sp</dimen>
     <dimen name="time_font">22sp</dimen>
