@@ -8,5 +8,8 @@ class WeatherRepo {
     companion object {
         suspend fun getWeather(city: String, appid: String): Data =
             WeatherService.api.getWeather(city, appid).awaitResponse().body()!!
+
+        suspend fun getWeather(lat: String, lon: String, appid: String): Data =
+            WeatherService.api.getWeather(lat, lon, appid).awaitResponse().body()!!
     }
 }

@@ -11,4 +11,11 @@ interface WeatherAPI {
         @Query("q") city: String,
         @Query("appid") appid: String
     ): Call<Data>
+
+    @GET("weather?")
+    fun getWeather(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String,
+        @Query("appid") appid: String
+    ): Call<Data>
 }

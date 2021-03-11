@@ -2,6 +2,7 @@ package com.example.weatherapp.`view-model`
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.location.Location
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -20,12 +21,24 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
 
     private val API_KEY = "cd6733212b58fc4b2fd1a255c17d09c6"
 
+    private val _location: MutableLiveData<Location> = MutableLiveData()
+    val location: LiveData<Location>
+        get() = _location
+    fun setLocation(location: Location) {
+        _location.postValue(location)
+    }
+
     private val _weather: MutableLiveData<Data> = MutableLiveData()
     val weather: LiveData<Data>
         get() = _weather
-    fun getWeather(city: String) {
+    fun setWeather(city: String) {
         viewModelScope.launch {
             _weather.value = WeatherRepo.getWeather(city, API_KEY)
+        }
+    }
+    fun setWeather(lat: String, lon: String) {
+        viewModelScope.launch {
+            _weather.value = WeatherRepo.getWeather(lat, lon, API_KEY)
         }
     }
 

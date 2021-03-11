@@ -3,6 +3,7 @@ package com.example.weatherapp
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,6 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: WeatherViewModel
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,20 +28,31 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
 
-        viewModel.weather.observe(viewLifecycleOwner, Observer {
-            fetchData(viewModel.weather)
-        })
-
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.location.observe(viewLifecycleOwner, Observer {
+            val lat = viewModel.location.value!!.latitude.toString()
+            val lon = viewModel.location.value!!.longitude.toString()
+
+            Log.v("XD", "lat: $lat, lon: $lon")
+
+            viewModel.setWeather(lat, lon)
+            viewModel.weather.observe(viewLifecycleOwner, Observer {
+                fetchData(viewModel.weather)
+                if(city.query.isNullOrEmpty())
+                    city.setQuery(viewModel.weather.value?.name, false)
+            })
+        })
 
         city.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    viewModel.getWeather(query)
+                    viewModel.setWeather(query)
                 }
                 return true
             }
