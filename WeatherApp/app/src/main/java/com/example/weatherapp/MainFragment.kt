@@ -3,55 +3,54 @@ package com.example.weatherapp
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
-import com.example.weatherapp.api.WeatherAPI
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
 import com.example.weatherapp.entity.Weather
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_main.root
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
 class MainFragment : Fragment() {
 
-    private lateinit var retrofit: Retrofit
-
-    private val BASE_URL = "https://api.openweathermap.org/data/2.5/"
     private val API_KEY = "cd6733212b58fc4b2fd1a255c17d09c6"
 
     private var icon: Int? = null
     private var desc: String? = null
 
+    private lateinit var viewModel: WeatherViewModel
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+        viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
+
+        viewModel.weather.observe(viewLifecycleOwner, Observer {
+            fetchData(viewModel.weather)
+        })
+
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createAPI()
-
         city.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    getWeather(query)
+                    viewModel.getWeather(query, API_KEY)
                 }
                 return true
             }
@@ -68,34 +67,10 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun createAPI(): WeatherAPI {
-        retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        return retrofit.create(WeatherAPI::class.java)
-    }
-
-    private fun getWeather(city: String) {
-        val call = retrofit.create(WeatherAPI::class.java).getWeather(city, API_KEY)
-
-        call.enqueue(object : Callback<Data> {
-            @RequiresApi(Build.VERSION_CODES.O)
-            override fun onResponse(call: Call<Data>, response: Response<Data>) {
-                fetchData(response)
-            }
-
-            override fun onFailure(call: Call<Data>, t: Throwable) {
-                Snackbar.make(root, t.message.toString(), Snackbar.LENGTH_SHORT)
-            }
-        })
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
-    private fun fetchData(response: Response<Data>) {
-        val resp = response.body()!!
+    private fun fetchData(response: LiveData<Data>) {
+        val resp = response.value!!
 
         fetchWeather(resp.weather.first())
 
