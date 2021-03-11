@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.size
 import com.example.weatherapp.api.WeatherAPI
 import com.example.weatherapp.entity.Data
 import com.example.weatherapp.entity.Weather
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        senior.setOnClickListener {
+        }
     }
 
     private fun createAPI(): WeatherAPI {

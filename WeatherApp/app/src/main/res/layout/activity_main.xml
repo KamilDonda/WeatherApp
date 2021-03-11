@@ -8,6 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/senior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_senior"
+        app:layout_constraintBottom_toTopOf="@+id/city"
+        app:layout_constraintEnd_toEndOf="@+id/city"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <SearchView
         android:id="@+id/city"
         style="@style/SearchViewStyle"
@@ -17,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02"  />
+        app:layout_constraintVertical_bias="0.1"  />
 
     <TextClock
         android:id="@+id/date"
@@ -53,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/temperature_max"
