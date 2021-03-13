@@ -6,6 +6,12 @@
     <color name="start_0">#03A9F4</color>
     <color name="end_0">#B39DDB</color>
 
+    <color name="start_1">#0288D1</color>
+    <color name="end_1">#9575CD</color>
+
     <color name="hint">#DDDDDDDD</color>
     <color name="cursor">@color/white</color>
+
+
+    <color name="disabled">#ccc</color>
 </resources>

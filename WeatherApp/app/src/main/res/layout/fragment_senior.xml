@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_0"
+    android:background="@drawable/background_1"
     tools:context=".MainFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/senior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_senior_disabled"
+        android:src="@drawable/ic_senior"
         app:layout_constraintBottom_toTopOf="@+id/city"
         app:layout_constraintEnd_toEndOf="@+id/city"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,8 +20,8 @@
     <SearchView
         android:id="@+id/city"
         style="@style/SearchViewStyle"
-        android:theme="@style/AppSearchView"
-        android:layout_marginHorizontal="@dimen/small_margin"
+        android:theme="@style/AppSearchViewSenior"
+        android:layout_marginHorizontal="@dimen/small_margin_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:format24Hour="d:MM:yyyy"
-        android:textSize="@dimen/desc_font"
-        android:layout_marginTop="@dimen/small_margin"
+        android:textSize="@dimen/desc_font_1"
+        android:layout_marginTop="@dimen/small_margin_1"
         android:fontFamily="@font/roboto_mono_light"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:format24Hour="H:mm:ss"
-        android:textSize="@dimen/time_font"
+        android:textSize="@dimen/time_font_1"
         android:fontFamily="@font/roboto_mono_light"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/date"
@@ -67,24 +67,26 @@
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/temp_font"
+        android:textSize="@dimen/temp_font_1"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/temperature_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font"
+        android:textSize="@dimen/medium_font_1"
         android:layout_marginTop="@dimen/big_margin"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/sunset"
         app:layout_constraintTop_toTopOf="@+id/temperature" />
 
@@ -92,9 +94,10 @@
         android:id="@+id/temperature_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font"
+        android:textSize="@dimen/medium_font_1"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/temperature_max"
         app:layout_constraintTop_toBottomOf="@+id/temperature_max" />
 
@@ -102,9 +105,10 @@
         android:id="@+id/pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/press_font"
+        android:textSize="@dimen/press_font_1"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintStart_toStartOf="@+id/temperature"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
@@ -120,12 +124,13 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/description"
-        android:layout_width="@dimen/desc_width"
+        android:layout_width="@dimen/desc_width_1"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="@dimen/desc_font"
+        android:textSize="@dimen/desc_font_1"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintBottom_toBottomOf="@+id/main_icon"
         app:layout_constraintStart_toEndOf="@+id/main_icon"
         app:layout_constraintTop_toTopOf="@+id/main_icon" />
@@ -141,15 +146,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+        app:layout_constraintTop_toBottomOf="@+id/temperature"
+        app:layout_constraintVertical_bias="0.75" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/sunrise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/desc_font"
+        android:textSize="@dimen/desc_font_1"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintBottom_toBottomOf="@+id/sunset"
         app:layout_constraintStart_toEndOf="@+id/sunrise_icon"
         app:layout_constraintTop_toTopOf="@+id/sunset" />
@@ -159,24 +166,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sunrise"
-        android:textSize="@dimen/small_font"
+        android:textAlignment="textEnd"
         android:textColor="@color/white"
+        android:textSize="@dimen/small_font_1"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/sunset"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/sunrise"
-        app:layout_constraintTop_toBottomOf="@+id/sunrise_icon" />
+        app:layout_constraintTop_toTopOf="@+id/sunset_desc" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/sunset_icon"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginTop="10dp"
-        android:foreground="@drawable/ic_sunset"
-        android:textColor="@color/white"
         android:visibility="gone"
+        android:foreground="@drawable/ic_sunset"
         app:layout_constraintBottom_toBottomOf="@+id/sunrise_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sunrise_icon" />
 
@@ -184,9 +191,10 @@
         android:id="@+id/sunset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/desc_font"
+        android:textSize="@dimen/desc_font_1"
         android:textColor="@color/white"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintBottom_toBottomOf="@+id/sunset_icon"
         app:layout_constraintStart_toEndOf="@+id/sunset_icon"
         app:layout_constraintTop_toTopOf="@+id/sunset_icon" />
@@ -196,9 +204,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sunset"
-        android:textSize="@dimen/small_font"
+        android:textAlignment="textEnd"
         android:textColor="@color/white"
+        android:textSize="@dimen/small_font_1"
         android:visibility="gone"
+        android:fontFamily="@font/montserrat_medium"
         app:layout_constraintEnd_toEndOf="@+id/sunset"
         app:layout_constraintTop_toBottomOf="@+id/sunset" />
 

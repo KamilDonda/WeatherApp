@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +12,16 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : Fragment() {
+class SeniorFragment : Fragment() {
 
     private lateinit var viewModel: WeatherViewModel
 
@@ -33,12 +33,12 @@ class MainFragment : Fragment() {
         val window = requireActivity().window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = resources.getColor(R.color.start_0)
-        window.navigationBarColor = resources.getColor(R.color.end_0)
+        window.statusBarColor = resources.getColor(R.color.start_1)
+        window.navigationBarColor = resources.getColor(R.color.end_1)
 
         viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_senior, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -99,7 +99,7 @@ class MainFragment : Fragment() {
         })
 
         senior.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_seniorFragment)
+            findNavController().popBackStack()
         }
     }
 

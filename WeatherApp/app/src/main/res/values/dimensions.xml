@@ -14,4 +14,17 @@
     <dimen name="desc_font">25sp</dimen>
     <dimen name="time_font">22sp</dimen>
     <dimen name="small_font">18sp</dimen>
+
+    <!--  Senior  -->
+    <dimen name="desc_width_1">250dp</dimen>
+
+    <dimen name="small_margin_1">8dp</dimen>
+
+    <dimen name="temp_font_1">150sp</dimen>
+    <dimen name="press_font_1">52sp</dimen>
+    <dimen name="medium_font_1">40sp</dimen>
+    <dimen name="city_font_1">34sp</dimen>
+    <dimen name="desc_font_1">28sp</dimen>
+    <dimen name="time_font_1">26sp</dimen>
+    <dimen name="small_font_1">22sp</dimen>
 </resources>
