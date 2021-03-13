@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_0"
     tools:context=".MainFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -31,7 +32,7 @@
         android:id="@+id/loading"
         android:layout_width="@dimen/progress_size"
         android:layout_height="@dimen/progress_size"
-        android:indeterminateTint="@color/black"
+        android:indeterminateTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
         android:textSize="@dimen/desc_font"
         android:layout_marginTop="@dimen/small_margin"
         android:fontFamily="@font/roboto_mono_light"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city" />
@@ -56,6 +58,7 @@
         android:format24Hour="H:mm:ss"
         android:textSize="@dimen/time_font"
         android:fontFamily="@font/roboto_mono_light"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/date"
         app:layout_constraintStart_toStartOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/date" />
@@ -65,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/temp_font"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +83,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_font"
         android:layout_marginTop="@dimen/big_margin"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/sunset"
         app:layout_constraintTop_toTopOf="@+id/temperature" />
@@ -89,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/temperature_max"
         app:layout_constraintTop_toBottomOf="@+id/temperature_max" />
@@ -98,6 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/press_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/temperature"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
@@ -107,6 +113,7 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginBottom="@dimen/big_margin"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/temperature"
         app:layout_constraintStart_toStartOf="@+id/temperature" />
@@ -117,6 +124,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="@dimen/desc_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/main_icon"
         app:layout_constraintStart_toEndOf="@+id/main_icon"
@@ -127,6 +135,7 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:foreground="@drawable/ic_sunrise"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,6 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/desc_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset"
         app:layout_constraintStart_toEndOf="@+id/sunrise_icon"
@@ -150,6 +160,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sunrise"
         android:textSize="@dimen/small_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset"
         app:layout_constraintEnd_toEndOf="@+id/sunrise"
@@ -161,6 +172,7 @@
         android:layout_height="@dimen/icon_size"
         android:layout_marginTop="10dp"
         android:foreground="@drawable/ic_sunset"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunrise_icon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,6 +185,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/desc_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset_icon"
         app:layout_constraintStart_toEndOf="@+id/sunset_icon"
@@ -184,6 +197,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sunset"
         android:textSize="@dimen/small_font"
+        android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/sunset"
         app:layout_constraintTop_toBottomOf="@+id/sunset" />
