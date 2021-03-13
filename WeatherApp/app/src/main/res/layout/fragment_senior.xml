@@ -143,9 +143,7 @@
         android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sunrise"
         app:layout_constraintTop_toBottomOf="@+id/temperature"
         app:layout_constraintVertical_bias="0.75" />
 
@@ -153,25 +151,26 @@
         android:id="@+id/sunrise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/desc_font_1"
-        android:textColor="@color/white"
-        android:visibility="gone"
         android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/desc_font_1"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset"
-        app:layout_constraintStart_toEndOf="@+id/sunrise_icon"
+        app:layout_constraintEnd_toEndOf="@+id/sunrise_desc"
         app:layout_constraintTop_toTopOf="@+id/sunset" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/sunrise_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:fontFamily="@font/montserrat_medium"
         android:text="@string/sunrise"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
         android:textSize="@dimen/small_font_1"
         android:visibility="gone"
-        android:fontFamily="@font/montserrat_medium"
-        app:layout_constraintEnd_toEndOf="@+id/sunrise"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sunset_desc" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -179,24 +178,23 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
         android:foreground="@drawable/ic_sunset"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunrise_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.725"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sunset"
         app:layout_constraintTop_toTopOf="@+id/sunrise_icon" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/sunset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/desc_font_1"
-        android:textColor="@color/white"
-        android:visibility="gone"
         android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/desc_font_1"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/small_margin"
         app:layout_constraintBottom_toBottomOf="@+id/sunset_icon"
-        app:layout_constraintStart_toEndOf="@+id/sunset_icon"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sunset_icon" />
 
     <com.google.android.material.textview.MaterialTextView
