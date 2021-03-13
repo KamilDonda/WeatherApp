@@ -36,10 +36,8 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.location.observe(viewLifecycleOwner, Observer {
-            val lat = viewModel.location.value!!.latitude.toString()
-            val lon = viewModel.location.value!!.longitude.toString()
-
-            Log.v("XD", "lat: $lat, lon: $lon")
+            val lat = it.latitude.toString()
+            val lon = it.longitude.toString()
 
             viewModel.setWeather(lat, lon)
             viewModel.weather.observe(viewLifecycleOwner, Observer {

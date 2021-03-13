@@ -53,5 +53,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
+    // view model
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
+
+    // google play service
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 }
