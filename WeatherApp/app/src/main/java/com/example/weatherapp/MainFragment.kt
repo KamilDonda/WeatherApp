@@ -1,12 +1,13 @@
 package com.example.weatherapp
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -15,7 +16,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
+
 
 class MainFragment : Fragment() {
 
@@ -39,25 +42,50 @@ class MainFragment : Fragment() {
             val lat = it.latitude.toString()
             val lon = it.longitude.toString()
 
-            viewModel.setWeather(lat, lon)
-            viewModel.weather.observe(viewLifecycleOwner, Observer {
-                fetchData(viewModel.weather)
-                if(city.query.isNullOrEmpty())
-                    city.setQuery(viewModel.weather.value?.name, false)
-            })
+            val isConnected = (activity as MainActivity).verifyAvailableNetwork()
+            if (isConnected)
+                viewModel.setWeather(lat, lon)
+            else {
+                Snackbar.make(
+                    requireActivity().findViewById(R.id.root),
+                    getString(R.string.internet_error),
+                    Snackbar.LENGTH_LONG
+                ).show()
+                val imm: InputMethodManager =
+                    requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
+            }
+        })
+
+        viewModel.weather.observe(viewLifecycleOwner, Observer {
+            fetchData(viewModel.weather)
+            if (city.query.isNullOrEmpty())
+                city.setQuery(viewModel.weather.value?.name, false)
         })
 
         city.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    viewModel.setWeather(query)
+                    val isConnected = (activity as MainActivity).verifyAvailableNetwork()
+                    if (isConnected)
+                        viewModel.setWeather(query)
+                    else {
+                        Snackbar.make(
+                            requireActivity().findViewById(R.id.root),
+                            getString(R.string.internet_error),
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        val imm: InputMethodManager =
+                            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.hideSoftInputFromWindow(view.windowToken, 0)
+                    }
                 }
                 return true
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                if(!query.isNullOrBlank())
-                    if(!query[0].isUpperCase())
+                if (!query.isNullOrBlank())
+                    if (!query[0].isUpperCase())
                         city.setQuery(query.capitalize(), false)
                 return false
             }
@@ -90,5 +118,19 @@ class MainFragment : Fragment() {
 
         sunrise.text = viewModel.convertTime(sunriseTime)
         sunset.text = viewModel.convertTime(sunsetTime)
+
+        loading.visibility = View.GONE
+        temperature.visibility = View.VISIBLE
+        temperature_max.visibility = View.VISIBLE
+        temperature_min.visibility = View.VISIBLE
+        pressure.visibility = View.VISIBLE
+        description.visibility = View.VISIBLE
+        main_icon.visibility = View.VISIBLE
+        sunrise.visibility = View.VISIBLE
+        sunrise_desc.visibility = View.VISIBLE
+        sunrise_icon.visibility = View.VISIBLE
+        sunset.visibility = View.VISIBLE
+        sunset_desc.visibility = View.VISIBLE
+        sunset_icon.visibility = View.VISIBLE
     }
 }

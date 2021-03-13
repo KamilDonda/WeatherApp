@@ -27,6 +27,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1"  />
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="@dimen/progress_size"
+        android:layout_height="@dimen/progress_size"
+        android:indeterminateTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextClock
         android:id="@+id/date"
         android:layout_width="wrap_content"
@@ -56,6 +66,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/temp_font"
         android:textColor="@color/black"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
@@ -69,6 +80,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_font"
         android:layout_marginTop="@dimen/big_margin"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/sunset"
         app:layout_constraintTop_toTopOf="@+id/temperature" />
 
@@ -77,6 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_font"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/temperature_max"
         app:layout_constraintTop_toBottomOf="@+id/temperature_max" />
 
@@ -85,6 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/press_font"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/temperature"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
@@ -93,6 +107,7 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_marginBottom="@dimen/big_margin"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/temperature"
         app:layout_constraintStart_toStartOf="@+id/temperature" />
 
@@ -102,6 +117,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="@dimen/desc_font"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/main_icon"
         app:layout_constraintStart_toEndOf="@+id/main_icon"
         app:layout_constraintTop_toTopOf="@+id/main_icon" />
@@ -111,6 +127,7 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:foreground="@drawable/ic_sunrise"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
@@ -122,6 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/desc_font"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset"
         app:layout_constraintStart_toEndOf="@+id/sunrise_icon"
         app:layout_constraintTop_toTopOf="@+id/sunset" />
@@ -132,6 +150,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sunrise"
         android:textSize="@dimen/small_font"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset"
         app:layout_constraintEnd_toEndOf="@+id/sunrise"
         app:layout_constraintTop_toBottomOf="@+id/sunrise_icon" />
@@ -142,6 +161,7 @@
         android:layout_height="@dimen/icon_size"
         android:layout_marginTop="10dp"
         android:foreground="@drawable/ic_sunset"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunrise_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.7"
@@ -153,6 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/desc_font"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/sunset_icon"
         app:layout_constraintStart_toEndOf="@+id/sunset_icon"
         app:layout_constraintTop_toTopOf="@+id/sunset_icon" />
@@ -163,6 +184,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sunset"
         android:textSize="@dimen/small_font"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/sunset"
         app:layout_constraintTop_toBottomOf="@+id/sunset" />
 
