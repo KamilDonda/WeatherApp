@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_senior.*
 
 class SeniorFragment : Fragment() {
 
@@ -74,9 +74,10 @@ class SeniorFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
                     val isConnected = (activity as MainActivity).verifyAvailableNetwork()
-                    if (isConnected)
+                    if (isConnected) {
                         viewModel.setWeather(query)
-                    else {
+                        viewModel.setQuery(query)
+                    } else {
                         Snackbar.make(
                             requireActivity().findViewById(R.id.root),
                             getString(R.string.internet_error),
@@ -106,39 +107,54 @@ class SeniorFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private fun fetchData(response: LiveData<Data>) {
-        val resp = response.value!!
+        val resp = response.value
 
-        viewModel.fetchWeather(resp.weather.first(), requireActivity())
+        if (resp == null) {
+            Snackbar.make(
+                requireActivity().findViewById(R.id.root),
+                getString(R.string.city_error),
+                Snackbar.LENGTH_LONG
+            ).show()
+            val imm: InputMethodManager =
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view?.windowToken, 0)
 
-        val temp = resp.main.temp
-        val tempMax = resp.main.temp_max
-        val tempMin = resp.main.temp_min
-        val press = resp.main.pressure
-        val sunriseTime = resp.sys.sunrise
-        val sunsetTime = resp.sys.sunset
+            city.setQuery("", false)
+        } else {
+            viewModel.fetchWeather(resp.weather.first(), requireActivity())
 
-        temperature.text = "${viewModel.calcTemp(temp)}°C"
-        temperature_max.text = "${viewModel.calcTemp(tempMax)}°C"
-        temperature_min.text = "${viewModel.calcTemp(tempMin)}°C"
-        pressure.text = "$press hPa"
-        description.text = viewModel.desc
-        main_icon.setImageResource(viewModel.icon!!)
+            val temp = resp.main.temp
+            val tempMax = resp.main.temp_max
+            val tempMin = resp.main.temp_min
+            val press = resp.main.pressure
+            val sunriseTime = resp.sys.sunrise
+            val sunsetTime = resp.sys.sunset
 
-        sunrise.text = viewModel.convertTime(sunriseTime)
-        sunset.text = viewModel.convertTime(sunsetTime)
+            temperature.text = "${viewModel.calcTemp(temp)}°C"
+            temperature_max.text = "${viewModel.calcTemp(tempMax)}°C"
+            temperature_min.text = "${viewModel.calcTemp(tempMin)}°C"
+            pressure.text = "$press hPa"
+            description.text = viewModel.desc
+            main_icon.setImageResource(viewModel.icon!!)
 
-        loading.visibility = View.GONE
-        temperature.visibility = View.VISIBLE
-        temperature_max.visibility = View.VISIBLE
-        temperature_min.visibility = View.VISIBLE
-        pressure.visibility = View.VISIBLE
-        description.visibility = View.VISIBLE
-        main_icon.visibility = View.VISIBLE
-        sunrise.visibility = View.VISIBLE
-        sunrise_desc.visibility = View.VISIBLE
-        sunrise_icon.visibility = View.VISIBLE
-        sunset.visibility = View.VISIBLE
-        sunset_desc.visibility = View.VISIBLE
-        sunset_icon.visibility = View.VISIBLE
+            sunrise.text = viewModel.convertTime(sunriseTime)
+            sunset.text = viewModel.convertTime(sunsetTime)
+
+            city.setQuery(viewModel.query.value, false)
+
+            loading.visibility = View.GONE
+            temperature.visibility = View.VISIBLE
+            temperature_max.visibility = View.VISIBLE
+            temperature_min.visibility = View.VISIBLE
+            pressure.visibility = View.VISIBLE
+            description.visibility = View.VISIBLE
+            main_icon.visibility = View.VISIBLE
+            sunrise.visibility = View.VISIBLE
+            sunrise_desc.visibility = View.VISIBLE
+            sunrise_icon.visibility = View.VISIBLE
+            sunset.visibility = View.VISIBLE
+            sunset_desc.visibility = View.VISIBLE
+            sunset_icon.visibility = View.VISIBLE
+        }
     }
 }

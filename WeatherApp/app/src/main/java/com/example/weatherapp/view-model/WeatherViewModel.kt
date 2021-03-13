@@ -24,6 +24,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     private val _location: MutableLiveData<Location> = MutableLiveData()
     val location: LiveData<Location>
         get() = _location
+
     fun setLocation(location: Location) {
         _location.postValue(location)
     }
@@ -31,14 +32,27 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     private val _weather: MutableLiveData<Data> = MutableLiveData()
     val weather: LiveData<Data>
         get() = _weather
+
     fun setWeather(city: String) {
         viewModelScope.launch {
             _weather.value = WeatherRepo.getWeather(city, API_KEY)
         }
     }
+
     fun setWeather(lat: String, lon: String) {
         viewModelScope.launch {
-            _weather.value = WeatherRepo.getWeather(lat, lon, API_KEY)
+            if (_weather.value == null)
+                _weather.value = WeatherRepo.getWeather(lat, lon, API_KEY)
+        }
+    }
+
+    private val _query: MutableLiveData<String> = MutableLiveData()
+    val query: LiveData<String>
+        get() = _query
+
+    fun setQuery(query: String) {
+        viewModelScope.launch {
+            _query.postValue(query)
         }
     }
 
@@ -46,7 +60,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     fun convertTime(epoc: Long): String? {
         return try {
             val sdf = SimpleDateFormat("H:mm")
-            val netDate = Date(epoc*1000)
+            val netDate = Date(epoc * 1000)
             sdf.format(netDate).toString()
         } catch (e: Exception) {
             e.toString()
@@ -57,9 +71,10 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
 
     var icon: Int? = null
     var desc: String? = null
+
     @SuppressLint("UseCompatLoadingForDrawables")
     fun fetchWeather(weather: Weather, activity: FragmentActivity) {
-        when(weather.icon) {
+        when (weather.icon) {
             "01d" -> {
                 icon = R.drawable.ic_day_clear
                 desc = activity.getString(R.string.clear_sky)
@@ -78,15 +93,15 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                 desc = activity.getString(R.string.few_clouds)
             }
 
-            "03d","03n" -> {
+            "03d", "03n" -> {
                 icon = R.drawable.ic_cloudy
                 desc = activity.getString(R.string.scattered_clouds)
             }
-            "04d","04n" -> {
+            "04d", "04n" -> {
                 icon = R.drawable.ic_overcast
                 desc = activity.getString(R.string.broken_clouds)
             }
-            "09d","09n" -> {
+            "09d", "09n" -> {
                 icon = R.drawable.ic_rain
                 desc = activity.getString(R.string.shower_rain)
             }
@@ -100,15 +115,15 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                 desc = activity.getString(R.string.rain)
             }
 
-            "11d","11n" -> {
+            "11d", "11n" -> {
                 icon = R.drawable.ic_rain_thunder
                 desc = activity.getString(R.string.thunderstorm)
             }
-            "13d","13n" -> {
+            "13d", "13n" -> {
                 icon = R.drawable.ic_snow
                 desc = activity.getString(R.string.snow)
             }
-            "50d","50n" -> {
+            "50d", "50n" -> {
                 icon = R.drawable.ic_mist
                 desc = activity.getString(R.string.mist)
             }

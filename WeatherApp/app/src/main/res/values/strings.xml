@@ -17,4 +17,6 @@
     <string name="internet_error">Brak dostepu do Internetu!</string>
     <string name="permission_granted">Uprawienie zostało przyznane!</string>
     <string name="permission_denied">Uprawnienie zostało odrzucone!</string>
+
+    <string name="city_error">Niepoprawne miasto!</string>
 </resources>
