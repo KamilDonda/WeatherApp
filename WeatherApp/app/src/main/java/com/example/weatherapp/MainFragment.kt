@@ -137,6 +137,7 @@ class MainFragment : Fragment() {
             city.setQuery(viewModel.query.value, false)
 
             loading.visibility = View.GONE
+            loading_desc.visibility = View.GONE
             temperature.visibility = View.VISIBLE
             temperature_max.visibility = View.VISIBLE
             temperature_min.visibility = View.VISIBLE

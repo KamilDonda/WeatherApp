@@ -20,7 +20,24 @@ import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_senior.*
+import kotlinx.android.synthetic.main.fragment_senior.city
+import kotlinx.android.synthetic.main.fragment_senior.description
+import kotlinx.android.synthetic.main.fragment_senior.loading
+import kotlinx.android.synthetic.main.fragment_senior.loading_desc
+import kotlinx.android.synthetic.main.fragment_senior.main_icon
+import kotlinx.android.synthetic.main.fragment_senior.pressure
+import kotlinx.android.synthetic.main.fragment_senior.senior
+import kotlinx.android.synthetic.main.fragment_senior.sunrise
+import kotlinx.android.synthetic.main.fragment_senior.sunrise_desc
+import kotlinx.android.synthetic.main.fragment_senior.sunrise_icon
+import kotlinx.android.synthetic.main.fragment_senior.sunset
+import kotlinx.android.synthetic.main.fragment_senior.sunset_desc
+import kotlinx.android.synthetic.main.fragment_senior.sunset_icon
+import kotlinx.android.synthetic.main.fragment_senior.temperature
+import kotlinx.android.synthetic.main.fragment_senior.temperature_max
+import kotlinx.android.synthetic.main.fragment_senior.temperature_min
 
 class SeniorFragment : Fragment() {
 
@@ -138,6 +155,7 @@ class SeniorFragment : Fragment() {
             city.setQuery(viewModel.query.value, false)
 
             loading.visibility = View.GONE
+            loading_desc.visibility = View.GONE
             temperature.visibility = View.VISIBLE
             temperature_max.visibility = View.VISIBLE
             temperature_min.visibility = View.VISIBLE
