@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_senior.*
 
 class SeniorFragment : Fragment() {
@@ -29,12 +30,6 @@ class SeniorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val window = requireActivity().window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = resources.getColor(R.color.start_1)
-        window.navigationBarColor = resources.getColor(R.color.end_1)
 
         viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
 
@@ -100,7 +95,7 @@ class SeniorFragment : Fragment() {
         })
 
         senior.setOnClickListener {
-            findNavController().popBackStack()
+            pager.currentItem = 0
         }
     }
 

@@ -12,13 +12,18 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+
+lateinit var pager: ViewPager2
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,11 +32,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationManager: LocationManager
 
+
+
     private var canSetLocation = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        pager = findViewById(R.id.viewPager)
+        val pagerAdapter = ScreenSlidePagerAdapter(this)
+        pager.adapter = pagerAdapter
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -86,11 +97,22 @@ class MainActivity : AppCompatActivity() {
     ) {
         if (requestCode == 2) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Snackbar.make(root, getString(R.string.permission_granted), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(root, getString(R.string.permission_granted), Snackbar.LENGTH_SHORT)
+                    .show()
                 getLastKnownLocation()
             } else {
-                Snackbar.make(root, getString(R.string.permission_denied), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(root, getString(R.string.permission_denied), Snackbar.LENGTH_SHORT)
+                    .show()
             }
+        }
+    }
+
+    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = 2
+
+        override fun createFragment(position: Int): Fragment {
+            return if (position == 0) MainFragment()
+            else SeniorFragment()
         }
     }
 }

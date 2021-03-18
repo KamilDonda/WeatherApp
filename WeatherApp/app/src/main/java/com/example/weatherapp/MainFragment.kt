@@ -30,12 +30,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val window = requireActivity().window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = resources.getColor(R.color.start_0)
-        window.navigationBarColor = resources.getColor(R.color.end_0)
-
         viewModel = ViewModelProvider(requireActivity()).get(WeatherViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -100,7 +94,7 @@ class MainFragment : Fragment() {
         })
 
         senior.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_seniorFragment)
+            pager.currentItem = 1
         }
     }
 
