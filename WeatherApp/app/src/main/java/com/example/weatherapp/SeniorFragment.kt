@@ -19,8 +19,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.`view-model`.WeatherViewModel
 import com.example.weatherapp.entity.Data
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_senior.*
 import kotlinx.android.synthetic.main.fragment_senior.city
 import kotlinx.android.synthetic.main.fragment_senior.description
@@ -142,7 +140,8 @@ class SeniorFragment : Fragment() {
             val sunriseTime = resp.sys.sunrise
             val sunsetTime = resp.sys.sunset
 
-            temperature.text = "${viewModel.calcTemp(temp)}°C"
+            val t = viewModel.calcTemp(temp)
+            temperature.text = "$t°C"
             temperature_max.text = "${viewModel.calcTemp(tempMax)}°C"
             temperature_min.text = "${viewModel.calcTemp(tempMin)}°C"
             pressure.text = "$press hPa"
@@ -168,6 +167,8 @@ class SeniorFragment : Fragment() {
             sunset.visibility = View.VISIBLE
             sunset_desc.visibility = View.VISIBLE
             sunset_icon.visibility = View.VISIBLE
+
+            root.background = viewModel.getBackground(requireActivity(), t, true)
         }
     }
 }

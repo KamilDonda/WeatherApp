@@ -124,7 +124,8 @@ class MainFragment : Fragment() {
             val sunriseTime = resp.sys.sunrise
             val sunsetTime = resp.sys.sunset
 
-            temperature.text = "${viewModel.calcTemp(temp)}°C"
+            val t = viewModel.calcTemp(temp)
+            temperature.text = "$t°C"
             temperature_max.text = "${viewModel.calcTemp(tempMax)}°C"
             temperature_min.text = "${viewModel.calcTemp(tempMin)}°C"
             pressure.text = "$press hPa"
@@ -150,6 +151,8 @@ class MainFragment : Fragment() {
             sunset.visibility = View.VISIBLE
             sunset_desc.visibility = View.VISIBLE
             sunset_icon.visibility = View.VISIBLE
+
+            root.background = viewModel.getBackground(requireActivity(), t, false)
         }
     }
 }

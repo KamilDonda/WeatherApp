@@ -3,11 +3,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="start_0">#03A9F4</color>
-    <color name="end_0">#B39DDB</color>
+    <color name="start_00">#64B5F6</color> <!-- <10 -->
+    <color name="start_01">#03A9F4</color> <!-- <20 -->
+    <color name="start_02">#F57C00</color> <!-- >=20 -->
+    <color name="end_00">#B39DDB</color>
+    <color name="end_02">#FFB300</color>
 
-    <color name="start_1">#0288D1</color>
-    <color name="end_1">#9575CD</color>
+    <color name="start_10">#2196F3</color> <!-- <10 -->
+    <color name="start_11">#0288D1</color> <!-- <20 -->
+    <color name="start_12">#F57C00</color> <!-- >=20 -->
+    <color name="end_10">#9575CD</color>
+    <color name="end_12">#F9A825</color>
 
     <color name="hint">#DDDDDDDD</color>
     <color name="cursor">@color/white</color>

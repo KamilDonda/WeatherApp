@@ -2,6 +2,8 @@ package com.example.weatherapp.`view-model`
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.location.Location
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.AndroidViewModel
@@ -129,4 +131,46 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
             }
         }
     }
+
+    fun getBackground(activity: FragmentActivity, temp: Int, senior: Boolean): GradientDrawable {
+        val startColor: Int
+        val endColor: Int
+        if (!senior) {
+            if (temp < 10) {
+                startColor = activity.resources.getColor(R.color.start_00)
+                endColor = activity.resources.getColor(R.color.end_00)
+            }
+            else if (temp < 20) {
+                startColor = activity.resources.getColor(R.color.start_01)
+                endColor = activity.resources.getColor(R.color.end_00)
+            }
+            else {
+                startColor = activity.resources.getColor(R.color.start_02)
+                endColor = activity.resources.getColor(R.color.end_02)
+            }
+        } else {
+            if (temp < 10) {
+                startColor = activity.resources.getColor(R.color.start_10)
+                endColor = activity.resources.getColor(R.color.end_10)
+            }
+            else if (temp < 20) {
+                startColor = activity.resources.getColor(R.color.start_11)
+                endColor = activity.resources.getColor(R.color.end_10)
+            }
+            else {
+                startColor = activity.resources.getColor(R.color.start_12)
+                endColor = activity.resources.getColor(R.color.end_12)
+            }
+        }
+
+    val gradientDrawable = GradientDrawable(
+        GradientDrawable.Orientation.TOP_BOTTOM,
+        intArrayOf(
+            startColor,
+            endColor
+        )
+    )
+    gradientDrawable.cornerRadius = 0f
+    return gradientDrawable
+}
 }
