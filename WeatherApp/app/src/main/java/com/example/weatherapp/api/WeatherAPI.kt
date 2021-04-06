@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+// Zapytania pobierające dane pogodowe względem miasta oraz współrzędnych geograficznych
 interface WeatherAPI {
     @GET("weather?")
     fun getWeather(

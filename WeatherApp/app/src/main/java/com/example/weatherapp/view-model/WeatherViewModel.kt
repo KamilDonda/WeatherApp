@@ -23,6 +23,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
 
     private val API_KEY = "cd6733212b58fc4b2fd1a255c17d09c6"
 
+    // Aktualna lokalizacja
     private val _location: MutableLiveData<Location> = MutableLiveData()
     val location: LiveData<Location>
         get() = _location
@@ -31,6 +32,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         _location.postValue(location)
     }
 
+    // Aktualna pogoda
     private val _weather: MutableLiveData<Data> = MutableLiveData()
     val weather: LiveData<Data>
         get() = _weather
@@ -48,6 +50,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    // Zapytanie wpisane w wyszukiwarkę
     private val _query: MutableLiveData<String> = MutableLiveData()
     val query: LiveData<String>
         get() = _query
@@ -58,6 +61,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    // Konwersja daty i czasu
     @SuppressLint("SimpleDateFormat")
     fun convertTime(epoc: Long): String? {
         return try {
@@ -69,11 +73,13 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    // Obliczanie temperatury
     fun calcTemp(t: Double) = (t - 273.15).roundToInt()
 
     var icon: Int? = null
     var desc: String? = null
 
+    // Ustawianie aktualnej ikony pogody i opisu
     @SuppressLint("UseCompatLoadingForDrawables")
     fun fetchWeather(weather: Weather, activity: FragmentActivity) {
         when (weather.icon) {
@@ -132,6 +138,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    // Pobieranie tła w zależności od temperatury
     fun getBackground(activity: FragmentActivity, temp: Int, senior: Boolean): GradientDrawable {
         val startColor: Int
         val endColor: Int
@@ -139,12 +146,10 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
             if (temp < 10) {
                 startColor = activity.resources.getColor(R.color.start_00)
                 endColor = activity.resources.getColor(R.color.end_00)
-            }
-            else if (temp < 20) {
+            } else if (temp < 20) {
                 startColor = activity.resources.getColor(R.color.start_01)
                 endColor = activity.resources.getColor(R.color.end_00)
-            }
-            else {
+            } else {
                 startColor = activity.resources.getColor(R.color.start_02)
                 endColor = activity.resources.getColor(R.color.end_02)
             }
@@ -152,25 +157,23 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
             if (temp < 10) {
                 startColor = activity.resources.getColor(R.color.start_10)
                 endColor = activity.resources.getColor(R.color.end_10)
-            }
-            else if (temp < 20) {
+            } else if (temp < 20) {
                 startColor = activity.resources.getColor(R.color.start_11)
                 endColor = activity.resources.getColor(R.color.end_10)
-            }
-            else {
+            } else {
                 startColor = activity.resources.getColor(R.color.start_12)
                 endColor = activity.resources.getColor(R.color.end_12)
             }
         }
 
-    val gradientDrawable = GradientDrawable(
-        GradientDrawable.Orientation.TOP_BOTTOM,
-        intArrayOf(
-            startColor,
-            endColor
+        val gradientDrawable = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(
+                startColor,
+                endColor
+            )
         )
-    )
-    gradientDrawable.cornerRadius = 0f
-    return gradientDrawable
-}
+        gradientDrawable.cornerRadius = 0f
+        return gradientDrawable
+    }
 }

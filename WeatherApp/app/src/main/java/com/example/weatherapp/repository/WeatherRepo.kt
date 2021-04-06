@@ -4,6 +4,7 @@ import com.example.weatherapp.api.WeatherService
 import com.example.weatherapp.entity.Data
 import retrofit2.awaitResponse
 
+// Repozytorium łączące view model z obiektem retrofita
 class WeatherRepo {
     companion object {
         suspend fun getWeather(city: String, appid: String): Data? =

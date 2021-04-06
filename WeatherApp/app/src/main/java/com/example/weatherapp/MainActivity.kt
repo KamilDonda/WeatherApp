@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationManager: LocationManager
 
-
-
     private var canSetLocation = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         getLastKnownLocation()
     }
 
+    // Pobieranie ostatniej znanej lokalizacji
     private fun getLastKnownLocation() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -74,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             }
             return
         }
+        // Nasłuchiwanie lokalizacji, gdy nie jest nullem, jest przypisywana do zmiennej
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 if (location != null && canSetLocation) {
@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    // Sprawdzanie, czy urządzenie jest połączone z internetem
     fun verifyAvailableNetwork(): Boolean {
         val connectivityManager =
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -90,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         return networkInfo != null && networkInfo.isConnected
     }
 
+    // Wyświetlenie dialogu z przyznaniem uprawnień do używania GPS-a
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -107,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Nawigacja pomiędzy fragmentami za pomocą ViewPager2
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 

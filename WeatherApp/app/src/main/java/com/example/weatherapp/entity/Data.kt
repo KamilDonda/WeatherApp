@@ -1,5 +1,6 @@
 package com.example.weatherapp.entity
 
+// Encje pobierane z API
 data class Data(
     val base: String,
     val clouds: Clouds,
